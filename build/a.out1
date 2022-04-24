@@ -1,0 +1,20 @@
+**** module/scope: ALU
+     Flip-Flops   : 0
+     Logic Gates  : 544
+     ADDER[16]: 2 units
+     ADDER[17]: 6 units
+     EQUALITY[16]: 5 units
+     MUX[2]: 16 slices
+     LPM[5]: 3 unaccounted
+     LPM[6]: 1 unaccounted
+     LPM[7]: 1 unaccounted
+**** TOTALS
+     Flip-Flops   : 0
+     Logic Gates  : 544
+     ADDER[16]: 2 units
+     ADDER[17]: 6 units
+     EQUALITY[16]: 5 units
+     MUX[2]: 16 slices
+     LPM[5]: 3 unaccounted
+     LPM[6]: 1 unaccounted
+     LPM[7]: 1 unaccounted

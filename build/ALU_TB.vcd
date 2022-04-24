@@ -1,0 +1,40 @@
+$date
+	Sat Apr 23 22:01:18 2022
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module ALU_TB $end
+$scope module uut $end
+$var wire 16 ! flags [15:0] $end
+$var wire 16 " in1 [15:0] $end
+$var wire 16 # in2 [15:0] $end
+$var wire 3 $ mode [2:0] $end
+$var wire 1 % zero $end
+$var reg 1 & negative $end
+$var reg 16 ' out [15:0] $end
+$var reg 1 ( overflow $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0(
+b111110100 '
+x&
+0%
+b0 $
+b100101100 #
+b11001000 "
+bz !
+$end
+#20
+1%
+b0 '
+b1111 #
+b11110000 "
+b11 $
+#1000
