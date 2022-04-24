@@ -1,4 +1,4 @@
-`include "verilog/ALU/ALU.v"
+`include "HDL/ALU/ALU.v"
 `timescale 1ps/1ps
 
 module ALU_TB();
