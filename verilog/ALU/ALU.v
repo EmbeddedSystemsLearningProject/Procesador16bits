@@ -19,6 +19,12 @@ module ALU(
     localparam NOT    = 3'd6;
     localparam XOR    = 3'd7;
 
+    initial begin
+        negative = 1'b0;
+        overflow = 1'b0;
+        out = 16'd0;
+    end
+
     always@(*)begin
         case(mode)
             ADD:begin
@@ -26,8 +32,8 @@ module ALU(
                 out = in1 + in2;
             end
             SUBST:begin
-                {overflow,out} = (in1 + ~in2 + 1'b1);
-                out = in1 + in2;
+                out = (in1 + ~in2 + 1'b1);
+                negative = 16'd0;
             end
             SHIFTR:begin out = in1 >> in2; end
             SHIFTL:begin out = in1 << in2; end
@@ -38,11 +44,11 @@ module ALU(
             default: begin
                 out = 16'd0;
                 negative = 1'b0;
-                overflow = 1'b0;+
+                overflow = 1'b0;
             end
         endcase
     end
-
+    
     assign zero = (out == 16'd0) ? 16'd1 : 16'd0;
 
 endmodule
