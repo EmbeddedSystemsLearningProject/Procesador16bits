@@ -32,8 +32,8 @@ module ALU(
                 out = in1 + in2;
             end
             SUBST:begin
-                out = (in1 + ~in2 + 1'b1);
-                negative = 16'd0;
+                {negative,out} = (in1 + ~in2 + 1'b1);
+                out = (negative == 1'b1) ? (~out+1'b1) : out;
             end
             SHIFTR:begin out = in1 >> in2; end
             SHIFTL:begin out = in1 << in2; end

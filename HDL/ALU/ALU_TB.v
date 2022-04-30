@@ -1,4 +1,4 @@
-`include "HDL/ALU/ALU.v"
+`include "ALU.v"
 `timescale 1ps/1ps
 
 module ALU_TB();
@@ -29,17 +29,15 @@ module ALU_TB();
         mode_reg = 16'd0;
         in1_reg = 16'd0;
         in2_reg = 16'd0;
-        //Modo 1: Suma
+        //Modo 1: Resta
         #20;
-        mode_reg = 16'd0;
-        in1_reg = 16'd200;
-        in2_reg = 16'd300;
+        mode_reg = SUBST;
+        in1_reg = 16'd100;
+        in2_reg = 16'd35;
         #20;
-        // Modo 1 Corrimiento
-        mode_reg = SHIFTL;
-        in1_reg = 16'h00f0;
-        in2_reg = 16'd15;
-        #20;
+        mode_reg = SUBST;
+        in1_reg = 16'd0;
+        in2_reg = 16'd65534;
 
         // #1 rst_n<=1'bx;clk<=1'bx;
         // #(CLK_PERIOD*3) rst_n<=1;
