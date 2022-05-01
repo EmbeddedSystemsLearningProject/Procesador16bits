@@ -1,4 +1,6 @@
 module ALU(
+    input wire clk,
+    input wire reset,
     input wire [15:0] in1,
     input wire [15:0] in2,
     input wire [2:0] mode,
@@ -7,7 +9,7 @@ module ALU(
 );
 
     wire zero;
-    reg negative;   //Latch
+    wire negative;   //Latch
     reg overflow;   //Latch
 
     localparam ADD    = 3'd0;
@@ -20,36 +22,38 @@ module ALU(
     localparam XOR    = 3'd7;
 
     initial begin
-        negative = 1'b0;
         overflow = 1'b0;
         out = 16'd0;
     end
 
-    always@(*)begin
-        case(mode)
-            ADD:begin
-                {overflow,out} = (in1 + in2);
-                out = in1 + in2;
-            end
-            SUBST:begin
-                out = (in1 + ~in2 + 1'b1);
-                negative = out[15];
-                //out = (negative == 1'b1) ? (~out+1'b1) : out;
-            end
-            SHIFTR:begin out = in1 >> in2; end
-            SHIFTL:begin out = in1 << in2; end
-            AND:begin out = in1 && in2; end
-            OR:begin out = in1 || in2; end
-            NOT:begin out = ~in1; end
-            XOR:begin out = in1 ^^ in2; end
-            default: begin
-                out = 16'd0;
-                negative = 1'b0;
-                overflow = 1'b0;
-            end
-        endcase
+    always@(posedge clk, reset)begin
+        if(reset)begin
+            overflow <= 1'b0;
+            out <= 16'd0;
+        end else begin
+            case(mode)
+                ADD:begin
+                    {overflow,out} <= (in1 + in2);
+                end
+                SUBST:begin
+                    out <= (in1 + ~in2 + 1'b1);
+                    
+                end
+                SHIFTR:begin out <= in1 >> in2; end
+                SHIFTL:begin out <= in1 << in2; end
+                AND:begin out <= in1 && in2; end
+                OR:begin out <= in1 || in2; end
+                NOT:begin out <= ~in1; end
+                XOR:begin out <= in1 ^^ in2; end
+                default: begin
+                    out <= 16'd0;
+                    overflow <= 1'b0;
+                end
+            endcase
+        end
     end
     
     assign zero = (out == 16'd0) ? 16'd1 : 16'd0;
+    assign negative = out[15];
 
 endmodule

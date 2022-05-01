@@ -1,4 +1,4 @@
-`include "ALU.v"
+`include "ALU/ALU.v"
 `timescale 1ps/1ps
 
 module ALU_TB();
@@ -6,15 +6,17 @@ module ALU_TB();
     reg [15:0] in1_reg;
     reg [15:0] in2_reg;
     reg [2:0] mode_reg;
+    reg clk;
 
     ALU uut(
+        .clk(clk),
         .in1(in1_reg),
         .in2(in2_reg),
         .mode(mode_reg)
     );
 
-    // localparam CLK_PERIOD = 10;
-    // always #(CLK_PERIOD/2) clk=~clk;
+    localparam CLK_PERIOD = 10;
+    always #(CLK_PERIOD/2) clk=~clk;
 
     localparam ADD    = 3'd0;
     localparam SUBST  = 3'd1;
@@ -26,6 +28,7 @@ module ALU_TB();
     localparam XOR    = 3'd7;
 
     initial begin
+        clk = 1'b0;
         mode_reg = 16'd0;
         in1_reg = 16'd0;
         in2_reg = 16'd0;
