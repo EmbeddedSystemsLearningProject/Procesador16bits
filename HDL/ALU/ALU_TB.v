@@ -37,7 +37,7 @@ module ALU_TB();
         #20;
         mode_reg = SUBST;
         in1_reg = 16'd0;
-        in2_reg = 16'd65534;
+        in2_reg = 16'd32766;
 
         // #1 rst_n<=1'bx;clk<=1'bx;
         // #(CLK_PERIOD*3) rst_n<=1;
